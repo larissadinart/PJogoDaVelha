@@ -5,11 +5,12 @@ namespace PJogoDaVelha
     internal class Program
     {
         static char[,] tabuleiro = new char[3, 3];
-        static int linha;
-        static int coluna;
+        static int novoJogo = 0;
         static int jogadas = 0;
         static string jog1;
         static string jog2;
+        static bool jogs;
+
 
         //inicializa o jogo com o char "-"
         static void InicializarMatriz()
@@ -22,12 +23,44 @@ namespace PJogoDaVelha
                 }
             }
         }
+        static void verificaEmpate()
+        {
+            bool empate = true;
+            for (int l = 0; l < 3; l++)
+            {
+                for (int c = 0; c < 3; c++)
+                {
+                    if (tabuleiro[l,c] == ' ') //esta vazio
+                    {
+                        empate = false;
+                        return;
+                    }
+
+                }
+            }
+
+            if (empate)
+            {
+                Console.WriteLine("\nEmpatou! Fim de jogo!\n");
+                Console.WriteLine("\nJogar novamente?\n1-Sim\n2-Não\n");
+                novoJogo = int.Parse(Console.ReadLine());
+                if (novoJogo == 1)
+                {
+                    InicializarMatriz();
+                    Jogadas1();
+                }
+                else if (novoJogo == 2)
+                {
+                    Environment.Exit(0);
+                }
+            }
+        }
         static void Jogadas1()
         //solicita a jogado do primeiro jogador e valida se está dentro dos parâmetros
         {
             do
             {
-                Console.WriteLine("\t  *MAPA DE POSIÇÕES*\n");
+                Console.WriteLine("\n\t  *MAPA DE POSIÇÕES*\n");
                 Console.WriteLine("\t\t1|2|3");
                 Console.WriteLine("\t\t4|5|6");
                 Console.WriteLine("\t\t7|8|9\n");
@@ -164,200 +197,226 @@ namespace PJogoDaVelha
             validacao();
             Jogadas2();
         }
-            
-            static void Jogadas2()
+
+        static void Jogadas2()
+        {
+            do
             {
-                do
-                {
-                Console.WriteLine("\t  *MAPA DE POSIÇÕES*\n");
+                Console.WriteLine("\n\t  *MAPA DE POSIÇÕES*\n");
                 Console.WriteLine("\t\t1|2|3");
                 Console.WriteLine("\t\t4|5|6");
                 Console.WriteLine("\t\t7|8|9\n");
 
                 Console.WriteLine($"\n{jog2}, faça sua jogada de acordo com o mapa acima: \n");
-                    try
+                try
+                {
+                    jogadas = int.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("\nJogada inválida, digite um número entre 1 e 9: \n");
+                }
+                if (jogadas < 1 || jogadas > 9)
+                {
+                    Console.WriteLine("\nJogada inválida, digite um número entre 1 e 9: ");
+                }
+                else
+                {
+                    //valida se a posição escolhida está vazia e preenche
+                    switch (jogadas)
                     {
-                        jogadas = int.Parse(Console.ReadLine());
+                        case 1:
+                            if (tabuleiro[0, 0] != ' ')
+                            {
+                                Console.WriteLine("Número já foi escolhido, escolha outro número!");
+                            }
+                            else
+                            {
+                                tabuleiro[0, 0] = char.Parse("O");
+                                Console.Clear();
+                                ImprimeTabuleiro(tabuleiro);
+                            }
+                            break;
+                        case 2:
+                            if (tabuleiro[0, 1] != ' ')
+                            {
+                                Console.WriteLine("Número já foi escolhido, escolha outro número!");
+                            }
+                            else
+                            {
+                                tabuleiro[0, 1] = char.Parse("O");
+                                Console.Clear();
+                                ImprimeTabuleiro(tabuleiro);
+                            }
+                            break;
+                        case 3:
+                            if (tabuleiro[0, 2] != ' ')
+                            {
+                                Console.WriteLine("Número já foi escolhido, escolha outro número!");
+                            }
+                            else
+                            {
+                                tabuleiro[0, 2] = char.Parse("O");
+                                Console.Clear();
+                                ImprimeTabuleiro(tabuleiro);
+                            }
+                            break;
+                        case 4:
+                            if (tabuleiro[1, 0] != ' ')
+                            {
+                                Console.WriteLine("Número já foi escolhido, escolha outro número!");
+                            }
+                            else
+                            {
+                                tabuleiro[1, 0] = char.Parse("O");
+                                Console.Clear();
+                                ImprimeTabuleiro(tabuleiro);
+                            }
+                            break;
+                        case 5:
+                            if (tabuleiro[1, 1] != ' ')
+                            {
+                                Console.WriteLine("Número já foi escolhido, escolha outro número!");
+                            }
+                            else
+                            {
+                                tabuleiro[1, 1] = char.Parse("O");
+                                Console.Clear();
+                                ImprimeTabuleiro(tabuleiro);
+                            }
+                            break;
+                        case 6:
+                            if (tabuleiro[1, 2] != ' ')
+                            {
+                                Console.WriteLine("Número já foi escolhido, escolha outro número!");
+                            }
+                            else
+                            {
+                                tabuleiro[1, 2] = char.Parse("O");
+                                Console.Clear();
+                                ImprimeTabuleiro(tabuleiro);
+                            }
+                            break;
+                        case 7:
+                            if (tabuleiro[2, 0] != ' ')
+                            {
+                                Console.WriteLine("Número já foi escolhido, escolha outro número!");
+                            }
+                            else
+                            {
+                                tabuleiro[2, 0] = char.Parse("O");
+                                Console.Clear();
+                                ImprimeTabuleiro(tabuleiro);
+                            }
+                            break;
+                        case 8:
+                            if (tabuleiro[2, 1] != ' ')
+                            {
+                                Console.WriteLine("Número já foi escolhido, escolha outro número!");
+                            }
+                            else
+                            {
+                                tabuleiro[2, 1] = char.Parse("O");
+                                Console.Clear();
+                                ImprimeTabuleiro(tabuleiro);
+                            }
+                            break;
+                        case 9:
+                            if (tabuleiro[2, 2] != ' ')
+                            {
+                                Console.WriteLine("Número já foi escolhido, escolha outro número!");
+                            }
+                            else
+                            {
+                                tabuleiro[2, 2] = char.Parse("O");
+                                Console.Clear();
+                                ImprimeTabuleiro(tabuleiro);
+                            }
+                            break;
                     }
-                    catch (Exception)
+
+                }
+            } while (jogadas < 1 || jogadas > 9);
+            validacao();
+            Jogadas1();
+        }
+
+
+
+
+        static void ImprimeTabuleiro(char[,] tabuleiro)
+        {
+            for (int l = 0; l < tabuleiro.GetLength(0); l++)
+            {
+                Console.WriteLine();
+                for (int c = 0; c < tabuleiro.GetLength(1); c++)
+                {
+                    if (c == 0)
                     {
-                        Console.WriteLine("\nJogada inválida, digite um número entre 1 e 9: \n");
-                    }
-                    if (jogadas < 1 || jogadas > 9)
-                    {
-                        Console.WriteLine("\nJogada inválida, digite um número entre 1 e 9: ");
+                        Console.Write("\t   " + tabuleiro[l, c]);
                     }
                     else
                     {
-                        //valida se a posição escolhida está vazia e preenche
-                        switch (jogadas)
-                        {
-                            case 1:
-                                if (tabuleiro[0, 0] != ' ')
-                                {
-                                    Console.WriteLine("Número já foi escolhido, escolha outro número!");
-                                }
-                                else
-                                {
-                                    tabuleiro[0, 0] = char.Parse("O");
-                                    Console.Clear();
-                                    ImprimeTabuleiro(tabuleiro);
-                                }
-                                break;
-                            case 2:
-                                if (tabuleiro[0, 1] != ' ')
-                                {
-                                    Console.WriteLine("Número já foi escolhido, escolha outro número!");
-                                }
-                                else
-                                {
-                                    tabuleiro[0, 1] = char.Parse("O");
-                                    Console.Clear();
-                                    ImprimeTabuleiro(tabuleiro);
-                                }
-                                break;
-                            case 3:
-                                if (tabuleiro[0, 2] != ' ')
-                                {
-                                    Console.WriteLine("Número já foi escolhido, escolha outro número!");
-                                }
-                                else
-                                {
-                                    tabuleiro[0, 2] = char.Parse("O");
-                                    Console.Clear();
-                                    ImprimeTabuleiro(tabuleiro);
-                                }
-                                break;
-                            case 4:
-                                if (tabuleiro[1, 0] != ' ')
-                                {
-                                    Console.WriteLine("Número já foi escolhido, escolha outro número!");
-                                }
-                                else
-                                {
-                                    tabuleiro[1, 0] = char.Parse("O");
-                                    Console.Clear();
-                                    ImprimeTabuleiro(tabuleiro);
-                                }
-                                break;
-                            case 5:
-                                if (tabuleiro[1, 1] != ' ')
-                                {
-                                    Console.WriteLine("Número já foi escolhido, escolha outro número!");
-                                }
-                                else
-                                {
-                                    tabuleiro[1, 1] = char.Parse("O");
-                                    Console.Clear();
-                                    ImprimeTabuleiro(tabuleiro);
-                                }
-                                break;
-                            case 6:
-                                if (tabuleiro[1, 2] != ' ')
-                                {
-                                    Console.WriteLine("Número já foi escolhido, escolha outro número!");
-                                }
-                                else
-                                {
-                                    tabuleiro[1, 2] = char.Parse("O");
-                                    Console.Clear();
-                                    ImprimeTabuleiro(tabuleiro);
-                                }
-                                break;
-                            case 7:
-                                if (tabuleiro[2, 0] != ' ')
-                                {
-                                    Console.WriteLine("Número já foi escolhido, escolha outro número!");
-                                }
-                                else
-                                {
-                                    tabuleiro[2, 0] = char.Parse("O");
-                                    Console.Clear();
-                                    ImprimeTabuleiro(tabuleiro);
-                                }
-                                break;
-                            case 8:
-                                if (tabuleiro[2, 1] != ' ')
-                                {
-                                    Console.WriteLine("Número já foi escolhido, escolha outro número!");
-                                }
-                                else
-                                {
-                                    tabuleiro[2, 1] = char.Parse("O");
-                                    Console.Clear();
-                                    ImprimeTabuleiro(tabuleiro);
-                                }
-                                break;
-                            case 9:
-                                if (tabuleiro[2, 2] != ' ')
-                                {
-                                    Console.WriteLine("Número já foi escolhido, escolha outro número!");
-                                }
-                                else
-                                {
-                                    tabuleiro[2, 2] = char.Parse("O");
-                                    Console.Clear();
-                                    ImprimeTabuleiro(tabuleiro);
-                                }
-                                break;
-                        }
-
+                        Console.Write(" | " + tabuleiro[l, c]);
                     }
-                } while (jogadas < 1 || jogadas > 9);
-            validacao();
-            Jogadas1();
+                }
+                Console.WriteLine();
+                if (l < 2)
+                {
+                    Console.Write("\t---------------");
+                }
             }
+            return;
+
+        }
+
+        static void validacao()
+        {
 
 
-
-
-            static void ImprimeTabuleiro(char[,] tabuleiro)
+            if ((tabuleiro[0, 0] == 'X' && tabuleiro[0, 1] == 'X' && tabuleiro[0, 2] == 'X') || (tabuleiro[1, 0] == 'X' && tabuleiro[1, 1] == 'X' && tabuleiro[1, 2] == 'X') ||
+                (tabuleiro[2, 0] == 'X' && tabuleiro[2, 1] == 'X' && tabuleiro[2, 2] == 'X') || (tabuleiro[0, 0] == 'X' && tabuleiro[1, 0] == 'X' && tabuleiro[2, 0] == 'X') ||
+                (tabuleiro[0, 1] == 'X' && tabuleiro[1, 1] == 'X' && tabuleiro[2, 1] == 'X') || ((tabuleiro[2, 0] == 'X' && tabuleiro[2, 1] == 'X' && tabuleiro[2, 2] == 'X')) ||
+                (tabuleiro[0, 0] == 'X' && tabuleiro[1, 1] == 'X' && tabuleiro[2, 2] == 'X') || (tabuleiro[0, 2] == 'X' && tabuleiro[1, 1] == 'X' && tabuleiro[2, 0] == 'X'))
             {
-                for (int l = 0; l < tabuleiro.GetLength(0); l++)
+                Console.WriteLine($"\nParabéns {jog1}! Você venceu o jogo!");
+                Console.WriteLine("Jogar novamente?\n1-Sim\n2-Não");
+                novoJogo = int.Parse(Console.ReadLine());
+                if (novoJogo == 1)
                 {
-                    Console.WriteLine();
-                    for (int c = 0; c < tabuleiro.GetLength(1); c++)
-                    {
-                        if (c == 0)
-                        {
-                            Console.Write("\t   " + tabuleiro[l, c]);
-                        }
-                        else
-                        {
-                            Console.Write(" | " + tabuleiro[l, c]);
-                        }
-                    }
-                    Console.WriteLine();
-                    if (l < 2)
-                    {
-                        Console.Write("\t---------------");
-                    }
+                    InicializarMatriz();
+                    Jogadas1();
                 }
-                return;
+                else if (novoJogo == 2)
+                {
+                    Environment.Exit(0);
+                }
 
             }
-               
-            static void validacao()
+
+
+            else if ((tabuleiro[0, 0] == 'O' && tabuleiro[0, 1] == 'O' && tabuleiro[0, 2] == 'O') || (tabuleiro[1, 0] == 'O' && tabuleiro[1, 1] == 'O' && tabuleiro[1, 2] == 'O') ||
+                (tabuleiro[2, 0] == 'O' && tabuleiro[2, 1] == 'O' && tabuleiro[2, 2] == 'O') || (tabuleiro[0, 0] == 'O' && tabuleiro[1, 0] == 'O' && tabuleiro[2, 0] == 'O') ||
+                (tabuleiro[0, 1] == 'O' && tabuleiro[1, 1] == 'O' && tabuleiro[2, 1] == 'O') || ((tabuleiro[2, 0] == 'O' && tabuleiro[2, 1] == 'O' && tabuleiro[2, 2] == 'O')) ||
+                (tabuleiro[0, 0] == 'O' && tabuleiro[1, 1] == 'O' && tabuleiro[2, 2] == 'O') || (tabuleiro[0, 2] == '0' && tabuleiro[1, 1] == '0' && tabuleiro[2, 0] == '0'))
             {
-         
-                if ((tabuleiro[0, 0] == 'X' && tabuleiro[0, 1] == 'X' && tabuleiro[0, 2] == 'X') || (tabuleiro[1, 0] == 'X' && tabuleiro[1, 1] == 'X' && tabuleiro[1, 2] == 'X') ||
-                    (tabuleiro[2, 0] == 'X' && tabuleiro[2, 1] == 'X' && tabuleiro[2, 2] == 'X') || (tabuleiro[0, 0] == 'X' && tabuleiro[1, 0] == 'X' && tabuleiro[2, 0] == 'X') ||
-                    (tabuleiro[0, 1] == 'X' && tabuleiro[1, 1] == 'X' && tabuleiro[2, 1] == 'X') || ((tabuleiro[2, 0] == 'X' && tabuleiro[2, 1] == 'X' && tabuleiro[2, 2] == 'X')) ||
-                    (tabuleiro[0, 0] == 'X' && tabuleiro[1, 1] == 'X' && tabuleiro[2, 2] == 'X') || (tabuleiro[0, 2] == 'X' && tabuleiro[1, 1] == 'X' && tabuleiro[2, 0] == 'X'))
+                Console.WriteLine($"\nParabéns {jog2}! Você venceu o jogo!");
+                Console.WriteLine("Jogar novamente?\n1-Sim\n2-Não");
+                novoJogo = int.Parse(Console.ReadLine());
+                if (novoJogo == 1)
                 {
-                    Console.WriteLine($"\nParabéns {jog1}! Você venceu o jogo!");
-
+                    InicializarMatriz();
+                    Jogadas1();
                 }
-                
-                else if ((tabuleiro[0, 0] == 'O' && tabuleiro[0, 1] == 'O' && tabuleiro[0, 2] == 'O') || (tabuleiro[1, 0] == 'O' && tabuleiro[1, 1] == 'O' && tabuleiro[1, 2] == 'O') ||
-                    (tabuleiro[2, 0] == 'O' && tabuleiro[2, 1] == 'O' && tabuleiro[2, 2] == 'O') || (tabuleiro[0, 0] == 'O' && tabuleiro[1, 0] == 'O' && tabuleiro[2, 0] == 'O') ||
-                    (tabuleiro[0, 1] == 'O' && tabuleiro[1, 1] == 'O' && tabuleiro[2, 1] == 'O') || ((tabuleiro[2, 0] == 'O' && tabuleiro[2, 1] == 'O' && tabuleiro[2, 2] == 'O')) ||
-                    (tabuleiro[0, 0] == 'O' && tabuleiro[1, 1] == 'O' && tabuleiro[2, 2] == 'O') || (tabuleiro[0, 2] == '0' && tabuleiro[1, 1] == '0' && tabuleiro[2, 0] == '0'))
+                else if (novoJogo == 2)
                 {
-                    Console.WriteLine($"\nParabéns {jog2}! Você venceu o jogo!");
+                    Environment.Exit(0);
                 }
-                
             }
+
+            verificaEmpate();
+
+        }
 
         static void DadosJogo()
         {
@@ -385,7 +444,7 @@ namespace PJogoDaVelha
             {
                 Console.WriteLine("Os nomes não podem ser iguais!");
             }
-  
+
             else
             {
                 Console.WriteLine($"\nBem vindos ao Jogo Da Velha {jog1} e {jog2}!!\n");
@@ -401,9 +460,5 @@ namespace PJogoDaVelha
             DadosJogo();
             Jogadas1();
         }
-            }
-    }        
-
-
-
- 
+    }
+}
