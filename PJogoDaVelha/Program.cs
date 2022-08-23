@@ -41,7 +41,7 @@ namespace PJogoDaVelha
 
             if (empate)
             {
-                Console.WriteLine("\nEmpatou! Fim de jogo!\n");
+                Console.WriteLine("\nDeu velha! Fim de jogo!\n");
                 Console.WriteLine("\nJogar novamente?\n1-Sim\n2-Não\n");
                 novoJogo = int.Parse(Console.ReadLine());
                 if (novoJogo == 1)
