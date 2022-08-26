@@ -4,6 +4,7 @@ namespace PJogoDaVelha
 {
     internal class Program
     {
+
         static char[,] tabuleiro = new char[3, 3];
         static int novoJogo = 0;
         static int jogadas = 0;
@@ -46,6 +47,8 @@ namespace PJogoDaVelha
                 novoJogo = int.Parse(Console.ReadLine());
                 if (novoJogo == 1)
                 {
+                    Console.Clear();
+                    DadosJogo();
                     InicializarMatriz();
                     Jogadas1();
                 }
@@ -384,6 +387,8 @@ namespace PJogoDaVelha
                 novoJogo = int.Parse(Console.ReadLine());
                 if (novoJogo == 1)
                 {
+                    Console.Clear();
+                    DadosJogo();
                     InicializarMatriz();
                     Jogadas1();
                 }
@@ -405,6 +410,8 @@ namespace PJogoDaVelha
                 novoJogo = int.Parse(Console.ReadLine());
                 if (novoJogo == 1)
                 {
+                    Console.Clear();
+                    DadosJogo();
                     InicializarMatriz();
                     Jogadas1();
                 }
