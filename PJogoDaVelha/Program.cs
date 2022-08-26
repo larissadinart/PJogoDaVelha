@@ -44,7 +44,10 @@ namespace PJogoDaVelha
             {
                 Console.WriteLine("\nDeu velha! Fim de jogo!\n");
                 Console.WriteLine("\nJogar novamente?\n1-Sim\n2-Não\n");
+                try { 
                 novoJogo = int.Parse(Console.ReadLine());
+                }
+                catch { Console.WriteLine("Opção inválida!"); }
                 if (novoJogo == 1)
                 {
                     Console.Clear();
@@ -55,6 +58,26 @@ namespace PJogoDaVelha
                 else if (novoJogo == 2)
                 {
                     Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("\nJogar novamente?\n1-Sim\n2-Não\n");
+                    try
+                    {
+                        novoJogo = int.Parse(Console.ReadLine());
+                    }
+                    catch { Console.WriteLine("Opção inválida!"); }
+                    if (novoJogo == 1)
+                    {
+                        Console.Clear();
+                        DadosJogo();
+                        InicializarMatriz();
+                        Jogadas1();
+                    }
+                    else if (novoJogo == 2)
+                    {
+                        Environment.Exit(0);
+                    }
                 }
             }
         }
@@ -384,7 +407,11 @@ namespace PJogoDaVelha
             {
                 Console.WriteLine($"\nParabéns {jog1}! Você venceu o jogo!");
                 Console.WriteLine("Jogar novamente?\n1-Sim\n2-Não");
-                novoJogo = int.Parse(Console.ReadLine());
+                try
+                {
+                    novoJogo = int.Parse(Console.ReadLine());
+                }
+                catch { Console.WriteLine("Opção inválida!"); }
                 if (novoJogo == 1)
                 {
                     Console.Clear();
@@ -395,6 +422,27 @@ namespace PJogoDaVelha
                 else if (novoJogo == 2)
                 {
                     Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("\nJogar novamente?\n1-Sim\n2-Não\n");
+                    try
+                    {
+                        novoJogo = int.Parse(Console.ReadLine());
+                    }
+                    catch { Console.WriteLine("Opção inválida!"); }
+                    if (novoJogo == 1)
+                    {
+                        Console.Clear();
+                        DadosJogo();
+                        InicializarMatriz();
+                        Jogadas1();
+                    }
+                    else if (novoJogo == 2)
+                    {
+                        Environment.Exit(0);
+                    }
                 }
 
             }
